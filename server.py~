@@ -49,7 +49,7 @@ def sendchoice(choices):
 
 def decryptmsg(crypt):
 	f=Fernet(key)
-	token=f.decrypt(crypt)
+	token=f.decrypt(crypt.encode())
 	return token
 
 def exfil():

@@ -9,7 +9,7 @@ import socket
 from cryptography.fernet import Fernet
 
 #host="localhost"
-host="192.168.0.176"
+host="192.168.176"
 port=8045
 key = b'EzBmzsJH6VogpmXpxI-bJS8xXgXMGgC2T_How8q24_w='
 
