@@ -1,0 +1,6 @@
+To use the client and server, you will need to install the following dependencies:
+python3x
+scapy
+watchdog
+cryptography
+pyxhook
