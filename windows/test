@@ -1,0 +1,178 @@
+  PID TTY      STAT   TIME COMMAND
+    1 ?        Ss     0:16 /sbin/init
+    2 ?        S      0:00 [kthreadd]
+    3 ?        S      0:00 [ksoftirqd/0]
+    5 ?        S<     0:00 [kworker/0:0H]
+    7 ?        S      0:08 [rcu_preempt]
+    8 ?        S      0:00 [rcu_sched]
+    9 ?        S      0:00 [rcu_bh]
+   10 ?        S      0:00 [migration/0]
+   11 ?        S<     0:00 [lru-add-drain]
+   12 ?        S      0:00 [watchdog/0]
+   13 ?        S      0:00 [cpuhp/0]
+   14 ?        S      0:00 [cpuhp/1]
+   15 ?        S      0:00 [watchdog/1]
+   16 ?        S      0:00 [migration/1]
+   17 ?        S      0:00 [ksoftirqd/1]
+   19 ?        S<     0:00 [kworker/1:0H]
+   20 ?        S      0:00 [cpuhp/2]
+   21 ?        S      0:00 [watchdog/2]
+   22 ?        S      0:00 [migration/2]
+   23 ?        S      0:00 [ksoftirqd/2]
+   25 ?        S<     0:00 [kworker/2:0H]
+   26 ?        S      0:00 [cpuhp/3]
+   27 ?        S      0:00 [watchdog/3]
+   28 ?        S      0:00 [migration/3]
+   29 ?        S      0:00 [ksoftirqd/3]
+   31 ?        S<     0:00 [kworker/3:0H]
+   32 ?        S      0:00 [kdevtmpfs]
+   33 ?        S<     0:00 [netns]
+   34 ?        S      0:00 [khungtaskd]
+   35 ?        S      0:00 [oom_reaper]
+   36 ?        S<     0:00 [writeback]
+   37 ?        S      0:00 [kcompactd0]
+   38 ?        SN     0:00 [ksmd]
+   39 ?        SN     0:04 [khugepaged]
+   40 ?        S<     0:00 [crypto]
+   41 ?        S<     0:00 [kintegrityd]
+   42 ?        S<     0:00 [bioset]
+   43 ?        S<     0:00 [kblockd]
+   49 ?        S<     0:00 [devfreq_wq]
+   50 ?        S<     0:00 [watchdogd]
+   52 ?        S      0:00 [kswapd0]
+   53 ?        S<     0:00 [vmstat]
+   62 ?        S<     0:00 [kthrotld]
+   63 ?        S<     0:00 [ipv6_addrconf]
+   90 ?        S<     0:00 [ata_sff]
+   91 ?        S      0:00 [scsi_eh_0]
+   93 ?        S<     0:00 [scsi_tmf_0]
+   94 ?        S      0:00 [scsi_eh_1]
+   95 ?        S<     0:00 [scsi_tmf_1]
+  100 ?        S<     0:00 [bioset]
+  114 ?        S<     0:00 [kworker/2:1H]
+  115 ?        S<     0:00 [kworker/1:1H]
+  120 ?        S<     0:00 [kworker/0:1H]
+  132 ?        S      0:01 [jbd2/sda8-8]
+  133 ?        S<     0:00 [ext4-rsv-conver]
+  142 ?        S<     0:00 [kworker/3:1H]
+  157 ?        Ss     0:01 /usr/lib/systemd/systemd-journald
+  169 ?        Ss     0:00 /usr/bin/lvmetad -f
+  176 ?        Ss     0:02 /usr/lib/systemd/systemd-udevd
+  199 ?        S<     0:00 [acpi_thermal_pm]
+  208 ?        S<     0:00 [cfg80211]
+  209 ?        S      0:15 [irq/277-iwlwifi]
+  244 ?        S      0:00 [i915/signal:0]
+  245 ?        S      0:00 [i915/signal:1]
+  246 ?        S      0:00 [i915/signal:2]
+  247 ?        S      0:00 [i915/signal:4]
+  253 ?        S      0:34 [irq/51-DELL073C]
+  352 ?        Ss     0:01 /usr/lib/systemd/systemd-logind
+  354 ?        Ssl    0:00 /usr/bin/ModemManager
+  356 ?        Ss     0:00 /usr/bin/crond -n
+  358 ?        Ss     0:00 /usr/lib/bluetooth/bluetoothd
+  359 ?        Ss     0:21 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+  360 ?        Ssl    0:11 /usr/bin/NetworkManager --no-daemon
+  397 ?        Ssl    0:04 /usr/lib/polkit-1/polkitd --no-debug
+  451 ?        Ssl    0:00 /usr/bin/gdm
+  459 ?        Ss     0:00 /usr/bin/wpa_supplicant -u
+  488 ?        Ssl    0:00 /usr/lib/accounts-daemon
+  700 ?        Ssl    0:02 /usr/lib/upower/upowerd
+  735 ?        SNsl   0:00 /usr/lib/rtkit-daemon
+  772 ?        S<     0:00 [krfcommd]
+  877 ?        Ssl    0:00 /usr/lib/colord
+  918 ?        Sl     0:00 gdm-session-worker [pam/gdm-password]
+  924 ?        Ss     0:00 /usr/lib/systemd/systemd --user
+  942 ?        S      0:00 (sd-pam)
+  966 ?        Sl     0:00 /usr/bin/gnome-keyring-daemon --daemonize --login
+  984 tty2     Ssl+   0:00 /usr/lib/gdm-x-session --run-script gnome-session
+  992 tty2     Sl+   11:10 /usr/lib/xorg-server/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -nolisten tcp -background none -noreset -keeptty -verbose 3
+  998 tty2     S+     0:00 xf86-video-intel-backlight-helper intel_backlight
+ 1003 ?        Ss     0:01 /usr/bin/dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+ 1005 tty2     Sl+    0:00 /usr/lib/gnome-session-binary
+ 1021 ?        Ssl    0:00 /usr/lib/at-spi-bus-launcher
+ 1026 ?        S      0:04 /usr/bin/dbus-daemon --config-file=/usr/share/defaults/at-spi2/accessibility.conf --nofork --print-address 3
+ 1029 ?        Sl     0:02 /usr/lib/at-spi2-registryd --use-gnome-session
+ 1053 ?        Ssl    0:00 /usr/lib/gvfsd
+ 1059 ?        Sl     0:00 /usr/lib/gvfsd-fuse /run/user/1000/gvfs -f -o big_writes
+ 1078 ?        S<sl   0:03 /usr/bin/pulseaudio --daemonize=no
+ 1082 ?        Sl     0:00 /usr/lib/pulse/gsettings-helper
+ 1098 ?        Sl     0:00 /usr/lib/gnome-shell-calendar-server
+ 1102 ?        Ssl    0:00 /usr/lib/evolution-source-registry
+ 1109 ?        Sl     0:00 /usr/lib/goa-daemon
+ 1124 ?        Sl     0:00 /usr/lib/dconf-service
+ 1131 ?        Sl     0:06 /usr/lib/telepathy/mission-control-5
+ 1132 ?        Ssl    0:00 /usr/lib/gvfs-udisks2-volume-monitor
+ 1138 ?        Ssl    0:04 /usr/lib/udisks2/udisksd
+ 1164 ?        Sl     0:00 /usr/lib/goa-identity-service
+ 1182 ?        Ssl    0:00 /usr/lib/gvfs-gphoto2-volume-monitor
+ 1186 ?        Ssl    0:00 /usr/lib/gvfs-mtp-volume-monitor
+ 1190 ?        Ssl    0:00 /usr/lib/gvfs-afc-volume-monitor
+ 1195 ?        Ssl    0:00 /usr/lib/gvfs-goa-volume-monitor
+ 1199 tty2     Sl+    0:00 /usr/lib/gsd-mouse
+ 1200 tty2     Sl+    0:01 /usr/lib/gsd-power
+ 1202 tty2     Sl+    0:00 /usr/lib/gsd-print-notifications
+ 1204 tty2     Sl+    0:00 /usr/lib/gsd-rfkill
+ 1207 tty2     Sl+    0:00 /usr/lib/gsd-screensaver-proxy
+ 1208 tty2     Sl+    0:06 /usr/lib/gsd-sharing
+ 1211 tty2     Sl+    0:00 /usr/lib/gsd-smartcard
+ 1216 tty2     Sl+    0:00 /usr/lib/gsd-sound
+ 1224 tty2     Sl+    0:00 /usr/lib/gsd-xsettings
+ 1230 tty2     Sl+    0:00 /usr/lib/gsd-wacom
+ 1232 tty2     Sl+    0:00 /usr/lib/gsd-a11y-settings
+ 1233 tty2     Sl+    0:00 /usr/lib/gsd-datetime
+ 1236 tty2     Sl+    0:00 /usr/lib/gsd-clipboard
+ 1240 tty2     Sl+    0:03 /usr/lib/gsd-color
+ 1241 tty2     Sl+    0:00 /usr/lib/gsd-media-keys
+ 1244 tty2     Sl+    0:01 /usr/lib/gsd-housekeeping
+ 1247 tty2     Sl+    0:00 /usr/lib/gsd-keyboard
+ 1264 ?        Ss     0:00 /usr/bin/cupsd -l
+ 1286 tty2     Sl+    0:00 /usr/lib/gsd-printer
+ 1297 tty2     Sl+    0:00 /usr/lib/gsd-disk-utility-notify
+ 1306 tty2     Sl+    0:00 /usr/lib/evolution/evolution-alarm-notify
+ 1315 tty2     Sl+    0:09 msm_notifier
+ 1321 tty2     Sl+    0:23 pamac-tray
+ 1324 ?        Ssl    0:00 /usr/lib/tracker-store
+ 1352 ?        Ssl    0:00 /usr/lib/evolution-calendar-factory
+ 1360 ?        Sl     0:00 /usr/lib/evolution-calendar-factory-subprocess --factory all --bus-name org.gnome.evolution.dataserver.Subprocess.Backend.Calendarx1352x2 --own-path /org/gnome/evolution/dataserver/Subprocess/Backend/Calendar/1352/2
+ 1371 ?        Ssl    0:00 /usr/lib/evolution-addressbook-factory
+ 1395 ?        Sl     0:00 /usr/lib/evolution-addressbook-factory-subprocess --factory all --bus-name org.gnome.evolution.dataserver.Subprocess.Backend.AddressBookx1371x2 --own-path /org/gnome/evolution/dataserver/Subprocess/Backend/AddressBook/1371/2
+ 1522 ?        Sl     0:09 /usr/bin/nautilus --gapplication-service
+ 1525 ?        Sl     0:00 /usr/lib/gvfsd-trash --spawner :1.15 /org/gtk/gvfs/exec_spaw/0
+ 1539 ?        Ssl    0:00 /usr/lib/gvfsd-metadata
+ 1542 ?        Sl     0:00 /usr/lib/gvfsd-burn --spawner :1.15 /org/gtk/gvfs/exec_spaw/1
+ 2162 ?        Sl    10:00 /usr/bin/gedit --gapplication-service
+ 2235 ?        Ssl    0:28 /usr/lib/gnome-terminal/gnome-terminal-server
+ 2242 pts/0    Ss     0:00 bash
+ 2275 tty2     Sl+   17:39 /usr/lib/firefox/firefox --new-window
+ 2389 ?        S      0:00 /usr/lib/gconfd-2
+ 2705 tty2     Sl+   12:44 /usr/lib/firefox/firefox -contentproc -childID 5 -isForBrowser -prefsLen 12025 -schedulerPrefs 0001,2 -greomni /usr/lib/firefox/omni.ja -appomni /usr/lib/firefox/browser/omni.ja -appdir /usr/lib/firefox/browser 2275 true tab
+ 2760 tty2     Sl+   21:10 /usr/lib/firefox/firefox -contentproc -childID 6 -isForBrowser -prefsLen 12025 -schedulerPrefs 0001,2 -greomni /usr/lib/firefox/omni.ja -appomni /usr/lib/firefox/browser/omni.ja -appdir /usr/lib/firefox/browser 2275 true tab
+ 2795 tty2     Sl+    3:22 /usr/lib/firefox/firefox -contentproc -childID 7 -isForBrowser -prefsLen 12025 -schedulerPrefs 0001,2 -greomni /usr/lib/firefox/omni.ja -appomni /usr/lib/firefox/browser/omni.ja -appdir /usr/lib/firefox/browser 2275 true tab
+ 3160 tty2     Sl+   17:27 /usr/lib/firefox/firefox -contentproc -childID 8 -isForBrowser -prefsLen 11914 -schedulerPrefs 0001,2 -greomni /usr/lib/firefox/omni.ja -appomni /usr/lib/firefox/browser/omni.ja -appdir /usr/lib/firefox/browser 2275 true tab
+ 3523 pts/1    Ss     0:00 bash
+ 6973 ?        S      0:00 [kworker/3:0]
+ 7546 ?        S      0:00 [kworker/3:3]
+ 7772 ?        S<     0:00 [kworker/u9:1]
+ 7922 ?        S<     0:00 [kworker/u9:3]
+ 9028 tty2     Rl+    1:48 /usr/bin/gnome-shell
+ 9361 ?        S      0:00 [kworker/2:1]
+ 9475 ?        S      0:00 [kworker/u8:1]
+ 9742 ?        D      0:00 [kworker/1:1]
+ 9762 ?        S      0:00 [irq/278-mei_me]
+ 9800 ?        S      0:00 [kworker/u8:59]
+ 9824 ?        S      0:01 [kworker/0:6]
+ 9831 ?        S      0:00 [kworker/0:12]
+ 9834 ?        S<     0:00 [hci0]
+ 9837 ?        S<     0:00 [hci0]
+ 9883 ?        S      0:00 [kworker/1:2]
+ 9978 ?        S      0:00 [kworker/2:3]
+10029 ?        Ssl    0:00 /usr/bin/ntpd -g -u ntp:ntp
+10111 ?        S      0:00 [kworker/0:0]
+10118 ?        S      0:00 [kworker/u8:0]
+10120 ?        S      0:00 [kworker/2:0]
+10137 pts/0    S+     0:00 sudo python server.py
+10138 pts/0    S+     0:00 python server.py
+10146 pts/1    S+     0:00 sudo python client.py
+10147 pts/1    S+     0:00 python client.py
+10156 pts/0    S+     0:00 /bin/sh -c ps awx >test
+10157 pts/0    R+     0:00 ps awx

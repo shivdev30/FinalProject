@@ -1,0 +1,53 @@
+missing module named 'multiprocessing.forking' - imported by c:\users\shivdev\appdata\local\programs\python\python36\lib\site-packages\PyInstaller\loader\rthooks\pyi_rth_multiprocessing.py
+missing module named multiprocessing.get_context - imported by multiprocessing, multiprocessing.pool, multiprocessing.managers, multiprocessing.sharedctypes
+missing module named multiprocessing.TimeoutError - imported by multiprocessing, multiprocessing.pool
+missing module named multiprocessing.BufferTooShort - imported by multiprocessing, multiprocessing.connection
+missing module named multiprocessing.AuthenticationError - imported by multiprocessing, multiprocessing.connection
+missing module named multiprocessing.set_start_method - imported by multiprocessing, multiprocessing.spawn
+missing module named multiprocessing.get_start_method - imported by multiprocessing, multiprocessing.spawn
+missing module named resource - imported by posix, C:\Users\shivdev\Documents\windows\windows-server\FinalProject - Copy\server.py
+missing module named posix - imported by os, C:\Users\shivdev\Documents\windows\windows-server\FinalProject - Copy\server.py
+missing module named _posixsubprocess - imported by subprocess, multiprocessing.util, C:\Users\shivdev\Documents\windows\windows-server\FinalProject - Copy\server.py
+missing module named 'org.python' - imported by pickle, C:\Users\shivdev\Documents\windows\windows-server\FinalProject - Copy\server.py, xml.sax
+missing module named readline - imported by cmd, code, pdb, C:\Users\shivdev\Documents\windows\windows-server\FinalProject - Copy\server.py
+excluded module named _frozen_importlib - imported by importlib, importlib.abc, C:\Users\shivdev\Documents\windows\windows-server\FinalProject - Copy\server.py
+missing module named _frozen_importlib_external - imported by importlib._bootstrap, importlib, importlib.abc, C:\Users\shivdev\Documents\windows\windows-server\FinalProject - Copy\server.py
+missing module named _winreg - imported by platform, C:\Users\shivdev\Documents\windows\windows-server\FinalProject - Copy\server.py
+missing module named _scproxy - imported by urllib.request
+missing module named java - imported by platform, C:\Users\shivdev\Documents\windows\windows-server\FinalProject - Copy\server.py
+missing module named 'java.lang' - imported by platform, C:\Users\shivdev\Documents\windows\windows-server\FinalProject - Copy\server.py, xml.sax._exceptions
+missing module named vms_lib - imported by platform, C:\Users\shivdev\Documents\windows\windows-server\FinalProject - Copy\server.py
+missing module named termios - imported by tty, scapy.utils, C:\Users\shivdev\Documents\windows\windows-server\FinalProject - Copy\server.py, getpass
+missing module named urllib.unquote - imported by urllib, asn1crypto._iri
+missing module named urllib.quote - imported by urllib, asn1crypto._iri
+missing module named grp - imported by tarfile, shutil, C:\Users\shivdev\Documents\windows\windows-server\FinalProject - Copy\server.py
+missing module named pwd - imported by posixpath, tarfile, shutil, http.server, webbrowser, C:\Users\shivdev\Documents\windows\windows-server\FinalProject - Copy\server.py, netrc, getpass
+missing module named _dummy_threading - imported by dummy_threading, C:\Users\shivdev\Documents\windows\windows-server\FinalProject - Copy\server.py
+missing module named org - imported by copy, C:\Users\shivdev\Documents\windows\windows-server\FinalProject - Copy\server.py
+missing module named cStringIO - imported by asn1crypto.core
+missing module named copy_reg - imported by cStringIO
+missing module named UserDict - imported by asn1crypto._ordereddict
+missing module named urlparse - imported by asn1crypto._iri
+runtime module named six.moves - imported by cryptography.x509.general_name
+missing module named StringIO - imported by scapy.modules.six, six
+missing module named matplotlib - imported by scapy.extlib, scapy.layers.inet
+missing module named 'matplotlib.collections' - imported by scapy.layers.inet
+missing module named cartopy - imported by scapy.layers.inet
+missing module named 'geoip2.errors' - imported by scapy.layers.inet
+missing module named geoip2 - imported by scapy.layers.inet
+missing module named visual - imported by scapy.layers.inet
+missing module named pyx - imported by scapy.extlib, scapy.plist, scapy.packet
+missing module named 'matplotlib.pyplot' - imported by scapy.extlib
+missing module named 'scapy.modules.six.moves' - imported by scapy.base_classes, scapy.utils, scapy.pton_ntop, scapy.plist, scapy.arch.bpf.core, scapy.volatile, scapy.utils6, scapy.fields, scapy.sendrecv, scapy.arch.linux, scapy.arch.windows, scapy.asn1.asn1, scapy.asn1fields, scapy.scapypipes, scapy.layers.inet, scapy.layers.inet6, scapy.layers.tls.crypto.prf, scapy.layers.tls.cert, scapy.layers.dns, scapy.layers.dhcp, scapy.layers.ntp, scapy.layers.tftp, scapy.layers.ipsec
+missing module named traitlets - imported by scapy.main
+missing module named IPython - imported by scapy.themes, scapy.main
+missing module named fcntl - imported by scapy.utils, scapy.arch.common, scapy.arch.bpf.core, scapy.arch.linux, scapy.arch.bpf.supersocket, scapy.arch.pcapdnet, scapy.supersocket, scapy.arch.unix
+missing module named scapy.arch.get_last_packet_timestamp - imported by scapy.arch, scapy.supersocket
+missing module named dumbnet - imported by scapy.arch.pcapdnet
+missing module named dnet - imported by scapy.arch.pcapdnet
+missing module named pcapy - imported by scapy.arch.pcapdnet
+missing module named pcap - imported by scapy.arch.pcapdnet
+missing module named scapy.arch.get_working_if - imported by scapy.arch, scapy.route
+missing module named mock - imported by scapy.utils
+missing module named __pypy__ - imported by scapy.config
+missing module named multiprocessing.Queue - imported by multiprocessing, C:\Users\shivdev\Documents\windows\windows-server\FinalProject - Copy\server.py
